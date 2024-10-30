@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartita Virtual</title>
+    <style>
+        /* Estilos básicos de la página */
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7e6ff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Fondo decorativo */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/50x50?text=❤️'), url('https://via.placeholder.com/50x50?text=🌸');
+            background-size: 50px;
+            background-repeat: repeat;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        /* Contenedor del sobre */
+        .envelope {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            cursor: pointer;
+            transform: scale(1);
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .envelope:hover {
+            transform: scale(1.01);
+        }
+
+        /* Parte superior del sobre */
+        .envelope .flap {
+            width: 100%;
+            height: 50vh;
+            background-color: #ff6699;
+            position: absolute;
+            top: 0;
+            left: 0;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transition: transform 0.8s ease;
+        }
+
+        /* Corazón en el cierre del sobre */
+        .envelope .heart {
+            width: 40px;
+            height: 40px;
+            background-color: #ff3366;
+            position: absolute;
+            top: 45vh;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: path("M 25 10 A 10 10 0 1 1 5 10 Q 12.5 30 25 45 Q 37.5 30 45 10 A 10 10 0 1 1 25 10 Z");
+            transition: opacity 0.3s;
+        }
+
+        /* Parte inferior del sobre */
+        .envelope .bottom {
+            width: 100%;
+            height: 50vh;
+            background-color: #ff6699;
+            position: absolute;
+            top: 50vh;
+            left: 0;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        /* La carta */
+        .letter {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.5em;
+            overflow-y: auto;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        /* Animación al abrir */
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope.open .heart {
+            opacity: 0;
+        }
+
+        .envelope.open .letter {
+            display: block;
+            animation: slideDown 1s forwards;
+        }
+
+        /* Animación de la carta */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                top: -100px;
+            }
+            to {
+                opacity: 1;
+                top: 0;
+            }
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 600px) {
+            .letter {
+                padding: 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope" onclick="openEnvelope()">
+        <div class="flap"></div>
+        <div class="heart"></div>
+        <div class="bottom"></div>
+        <div class="letter">
+            <p>Oli, te iba a escribir esto por mensaje, pero creí que sería mejor en una cartita virtual. Quiero decirte que de verdad perdón por todo lo que he hecho. Y aunque sé que un perdón no cambia nada ni hará que olvides o me perdones de verdad, quiero que sepas que tengo un arrepentimiento enorme, porque por mi culpa he empeorado nuestra relación y que ahora ya no me ves de la misma forma ni me tienes el mismo amor ni se te hace tan chido como antes.</p>
+
+            <p>He hecho las cosas solo por mi pensamiento tonto y que tal vez ya estés harta de que siempre te diga lo mismo, que soy un tonto y todo eso. Solo que no sé de qué otra manera puedo decirlo. Yo he tenido toda la culpa de las peleas y todo, y por eso siempre me digo tonto, porque sé que lo soy. Sé que tal vez sea muy tarde para decirte que cambiaré, porque ya hice más cosas malas que buenas y no te culpo por tenerme rencor.</p>
+
+            <p>Solo te pido que me tengas paciencia y que no me dejes. Te prometo que ya haré las cosas bien. Te diré toda la verdad siempre y nunca te ocultaré nada. Te daré ese amor que te mereces y que no he sabido darte. Aunque ya no será igual que antes, te prometo no volverte a hacer pasar por algo así, si aún me das la oportunidad de demostrártelo.</p>
+
+            <p>Te amo infinitamente y no sabes el miedo que me da perderte. Sé que tu confianza hacia mí ya no es la misma y eso solo es por mi culpa. Te prometo que mejoraré, dejaré de hacer tonterías y te daré el amor que te mereces. Ojalá podamos superar esto juntos. Te amo mi niña, inmensamente.</p>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            document.querySelector(".envelope").classList.add("open");
+        }
+    </script>
+
+</body>
+</html>
